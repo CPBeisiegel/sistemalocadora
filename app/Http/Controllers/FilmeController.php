@@ -9,6 +9,13 @@ use App\Filme;
 
 class FilmeController extends Controller
 {
+    public function index(Request $request){
+        if($request->isMethod('GET')){
+            $todosFilmes = Filme::all();
+            return view('filme',["todosFilmes"=>$todosFilmes]);
+        }
+    }
+
     public function criar(){
 
         $novoFilme = new Filme();
@@ -20,4 +27,29 @@ class FilmeController extends Controller
         // vai fazer um select de todos os filmes e vai te devolver todos os arquivos presentes dentro da tabela.
 
     }
+
+    public function editar(Request $request, $id){
+        if($request->isMethod('GET')){
+            $filme = Filme::find($id);
+            return view('editarFilme',["filme"=>$filme]);
+        }
+
+        $filme = Filme::find($request->filme_id);
+        $filme->titulo = $request->ftitulo;
+        $resultado = $filme->save();
+
+        return view("editarFilme",["resultado"=>$resultado, "filme"=>$filme]);
+    }
+
+    // public function excluir(Request $request, $id){
+
+    //     $filme = Filme::find($id);
+
+    //     $filme->delete();
+ 
+    //     echo "deu certo";
+        
+    // }
+    
+
 }
