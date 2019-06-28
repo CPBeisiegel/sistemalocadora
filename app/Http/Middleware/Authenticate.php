@@ -19,3 +19,5 @@ class Authenticate extends Middleware
         }
     }
 }
+
+// Ele analisa se existe o login e se o usuario pode ter acesso as info do site. Serve como uma autentificação. Ele faz isso atraves do token, um padrão do laravel. O middleware vai por meio do token para realizar essa autentificação.

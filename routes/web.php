@@ -25,7 +25,7 @@ Route::get('cadastro', function(){
 
 Route::get('compras',"comprasController@index");
 
-Route::get('ator', "atorController@index");
+Route::get('ator', "atorController@index")->middleware('checkadmin');
 // metodo index é utilizado para 
 // é sempre deste jeito - o nome do controller e o metodo que ele vai acessar as info( nenhum metodo vai existir se não for criado pelo dev)
 
@@ -42,4 +42,8 @@ Route::post('filme/editar/{id}',"FilmeController@editar");
 // Route::post('filme/excluir/{id}',"FilmeController@excluir");
 Auth::routes();
 
+//criou rotas que dão acesso a paginas login, register, verify 
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+
